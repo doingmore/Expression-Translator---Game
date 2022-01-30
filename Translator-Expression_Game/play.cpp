@@ -3,20 +3,24 @@
 #include <algorithm>
 #include <map>
 
+#include "storetail.h"
 #include "RepositoryForExpressions.h"
 
 bool backInMenu = false;
+
+int score{ 0 };
 
 int getExpressionBG(int &value) // bulgarian to english
 {
 	int counter{ 0 };
 	std::string englishExpresion;
 	std::map<std::string, std::string>::iterator it;
+	std::cout << "Your score: " << score << '\n';
 	for (it = myMap.begin(); it != myMap.end(); it++)
 	{
 		while (value == counter)
 		{
-			std::cout <<">> "<< it->first<<" <<" << " Enter on english: ";
+			std::cout <<">> "<< it->first<<" <<" <<'\n'<< " Enter on english: ";
 			std::getline(std::cin, englishExpresion);
 			if (englishExpresion=="exit")
 			{
@@ -26,6 +30,7 @@ int getExpressionBG(int &value) // bulgarian to english
 			if (it->second == englishExpresion)
 			{
 				std::cout << "OK!!! Your answer is correct ^_^ ";
+				score += 1;
 				return 1;
 			}
 			else
@@ -45,9 +50,10 @@ int getExpressionENG(int& value)  // english to bulgarian
 	std::map<std::string, std::string>::iterator it;
 	for (it = myMap.begin(); it != myMap.end(); it++)
 	{
+		std::cout << "Your score: " << score << '\n';
 		while (value == counter)
 		{
-			std::cout << ">> " << it->second << " <<" << " Enter on bulgarian: ";
+			std::cout << ">> " << it->second << " <<" <<'\n'<< " Enter on bulgarian: ";
 			std::getline(std::cin, englishExpresion);
 			if (englishExpresion == "exit")
 			{
@@ -69,12 +75,31 @@ int getExpressionENG(int& value)  // english to bulgarian
 	return 1;
 }
 
+int getRandomNumber(tail<int> &lastTen)
+{
+	int rangeRandom = myMap.size();
+	int somethingValue = rand() % rangeRandom;
+	while (true)
+	{
+		if (lastTen.find(somethingValue) )
+		{
+			
+		}
+		else
+		{
+			lastTen.push_front(somethingValue);
+			break;
+		}
+		somethingValue = rand() % rangeRandom;
+	}
+	return somethingValue;
+}
 
 int play(int &mode)
 {
-	int rangeRandom = myMap.size();
-	int value = rand() % rangeRandom;
-	 
+	tail<int> lastTen; // store last 10 numbers from srand, in order not repeat expresions 
+	int value{0};
+
 	while (1)
 	{
 		switch (mode)
@@ -82,13 +107,13 @@ int play(int &mode)
 		case 1:
 			backInMenu = false;
 			system("cls");
-			value = rand() % rangeRandom;
+			value = getRandomNumber(lastTen);
 			getExpressionBG(value);
 			break;
 		case 2:
 			backInMenu = false;
 			system("cls");
-			value = rand() % rangeRandom;
+			value = getRandomNumber(lastTen);
 			getExpressionENG(value);
 			break;
 		}
