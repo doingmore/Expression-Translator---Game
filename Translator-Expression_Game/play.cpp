@@ -15,11 +15,11 @@ int getExpressionBG(int &value) // bulgarian to english
 	int counter{ 0 };
 	std::string englishExpresion;
 	std::map<std::string, std::string>::iterator it;
-	std::cout << "Your score: " << score << '\n';
 	for (it = myMap.begin(); it != myMap.end(); it++)
 	{
 		while (value == counter)
 		{
+			std::cout << "Your score: " << score << '\n';
 			std::cout <<">> "<< it->first<<" <<" <<'\n'<< " Enter on english: ";
 			std::getline(std::cin, englishExpresion);
 			if (englishExpresion=="exit")
@@ -35,7 +35,11 @@ int getExpressionBG(int &value) // bulgarian to english
 			}
 			else
 			{
+				system("cls");
 				std::cout << "Your answer is incorrect! Tyr agine:" << '\n';
+				score = 0;	
+				std::cout << "The correct answer is: " << it->second << '\n';
+				std::cout<<'\n';
 			}
 		}
 		counter++;
@@ -68,6 +72,7 @@ int getExpressionENG(int& value)  // english to bulgarian
 			else
 			{
 				std::cout << "Your answer is incorrect! Tyr agine:" << '\n';
+				std::cout << "The correct answer is: " << it->first << '\n';
 			}
 		}
 		counter++;
