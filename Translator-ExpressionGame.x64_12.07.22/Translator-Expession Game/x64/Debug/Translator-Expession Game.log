@@ -1,0 +1,3 @@
+﻿  play.cpp
+C:\Users\Mr.Robot\Desktop\source\REPOS\Translator-Expession Game\Translator-Expession Game\play.cpp(94,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Translator-Expession Game.vcxproj -> C:\Users\Mr.Robot\Desktop\source\REPOS\Translator-Expession Game\x64\Debug\Translator-Expession Game.exe
