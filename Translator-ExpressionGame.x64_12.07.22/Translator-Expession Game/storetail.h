@@ -16,7 +16,7 @@ private:
 		}
 	}
 public:
-	const bool find(const int& number)
+	bool find(const int& number) const
 	{
 		for (int i = 0; i < length_tail; i++)
 		{
