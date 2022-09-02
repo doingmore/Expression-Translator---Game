@@ -5,12 +5,10 @@
 #include <chrono>
 #include <random>
 
-
 #include "storetail.h"
 #include "RepositoryForExpressions.h"
 
 bool backInMenu = false;
-
 
 int score{ 0 };
 int number_of_expresion{ 1 };
@@ -91,7 +89,7 @@ int getExpressionENG(int& value)  // english to bulgarian
 
 int getRandomNumber(tail<int>& lastTen)
 {
-	int size_repository = myMap.size();
+	int size_repository = (int)myMap.size();
 	// Seed our Mersenne Twister using the
 	std::mt19937 mt{ static_cast<unsigned int>(std::chrono::steady_clock::now().time_since_epoch().count()) };
 	// Create a reusable random number generator that generates uniform numbers between 0 and 3
