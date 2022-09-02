@@ -1,7 +1,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-
 extern int play(int& mode);
 
 int main()
